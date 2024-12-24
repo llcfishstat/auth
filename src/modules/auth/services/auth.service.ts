@@ -1,9 +1,4 @@
-import {
-    BadRequestException,
-    ConflictException,
-    Injectable,
-    NotFoundException,
-} from '@nestjs/common';
+import { ConflictException, Injectable, NotFoundException } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { JwtService } from '@nestjs/jwt';
 import { addHours } from 'date-fns';
@@ -363,7 +358,7 @@ export class AuthService implements IAuthService {
         const forgotPassword = await this.prisma.forgotPassword.findFirst({
             where: {
                 email: resetPasswordDto.email,
-                firstUsed: false,
+                firstUsed: true,
                 finalUsed: false,
                 expires: {
                     gt: new Date(),
