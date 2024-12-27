@@ -40,7 +40,7 @@ export class SignUpByEmailResponseDto extends AuthRefreshResponseDto {
     user: UserResponseDto;
 }
 
-export class VerifyEmailResponseDto {
+export class VerifyEmailResponseDto extends AuthRefreshResponseDto {
     @ApiProperty({
         description: 'The user details',
         type: UserResponseDto,
