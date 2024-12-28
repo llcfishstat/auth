@@ -67,6 +67,14 @@ export class CompanyService {
         return this.toCompanyResponseDto(updatedCompany);
     }
 
+    public async getCompanyById(companyId: string): Promise<CompanyResponseDto> {
+        const company = await this.prisma.company.findUnique({
+            where: { id: companyId },
+        });
+
+        return this.toCompanyResponseDto(company);
+    }
+
     private toCompanyResponseDto(company: Company): CompanyResponseDto {
         return {
             id: company.id,
