@@ -9,7 +9,7 @@ import { Public } from 'src/common/decorators/public.decorator';
     version: '1',
     path: '/company',
 })
-export class PublicAuthController {
+export class PublicCompanyController {
     constructor(private readonly companyService: CompanyService) {}
 
     @Public()

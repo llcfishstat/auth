@@ -4,9 +4,10 @@ import { CommonModule } from 'src/common/common.module';
 
 import { CompanyService } from './services/company.service';
 import { AuthCompanyController } from './controllers/company.auth.controller';
+import { PublicCompanyController } from './controllers/company.public.controller';
 
 @Module({
-    controllers: [AuthCompanyController],
+    controllers: [AuthCompanyController, PublicCompanyController],
     imports: [CommonModule],
     providers: [CompanyService],
     exports: [CompanyService],
