@@ -12,11 +12,7 @@ import { setupSwagger } from './swagger';
 async function bootstrap() {
     const logger = new Logger();
     const app = await NestFactory.create(AppModule, new ExpressAdapter(express()), {
-        cors: {
-            origin: ['http://localhost:8888'],
-            methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
-            allowedHeaders: 'Content-Type,Authorization',
-        },
+        cors: false,
     });
 
     const configService = app.get(ConfigService);
