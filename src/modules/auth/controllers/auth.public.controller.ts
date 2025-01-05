@@ -68,7 +68,7 @@ export class PublicAuthController {
         response.cookie('accessToken', authResponse.accessToken, {
             httpOnly: true,
             secure: this.env === 'production',
-            maxAge: 1000 * 60 * 15,
+            maxAge: 1000 * 60,
             sameSite: 'strict',
         });
 
