@@ -69,7 +69,7 @@ export class PublicAuthController {
         response.cookie('accessToken', authResponse.accessToken, {
             httpOnly: true,
             secure: this.env === 'production',
-            maxAge: 1000 * 60,
+            maxAge: 1000 * 60 * 60 * 24 * 3,
             sameSite: 'strict',
         });
 
@@ -103,7 +103,7 @@ export class PublicAuthController {
         response.cookie('accessToken', signUpResponse.accessToken, {
             httpOnly: true,
             secure: this.env === 'production',
-            maxAge: 1000 * 60 * 15,
+            maxAge: 1000 * 60 * 60 * 24 * 3,
             sameSite: 'strict',
         });
 
@@ -145,7 +145,7 @@ export class PublicAuthController {
         response.cookie('accessToken', verifyResponse.accessToken, {
             httpOnly: true,
             secure: this.env === 'production',
-            maxAge: 1000 * 60 * 15,
+            maxAge: 1000 * 60 * 60 * 24 * 3,
             sameSite: 'strict',
         });
 
@@ -203,7 +203,7 @@ export class PublicAuthController {
         response.cookie('accessToken', refreshResponse.accessToken, {
             httpOnly: true,
             secure: this.env === 'production',
-            maxAge: 1000 * 60 * 15,
+            maxAge: 1000 * 60 * 60 * 24 * 3,
             sameSite: 'strict',
         });
 
