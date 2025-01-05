@@ -17,6 +17,7 @@ import { Public } from 'src/common/decorators/public.decorator';
 import { AuthJwtRefreshGuard } from 'src/common/guards/jwt.refresh.guard';
 import { AuthLoginByEmailDto, AuthLoginByPhoneDto } from 'src/modules/auth/dtos/auth.login.dto';
 import {
+    AuthRefreshResponseDto,
     AuthResponseDto,
     SignUpByEmailResponseDto,
     VerifyEmailResponseDto,
@@ -31,7 +32,6 @@ import {
     VerifyFlashCallResponseDto,
 } from 'src/common/dtos/flash-call-response.dto';
 
-import { SuccessRefreshTokenResponseDto } from 'src/common/dtos/refresh-token-response.dto';
 import {
     ForgotPasswordDto,
     ForgotPasswordResponseDto,
@@ -197,7 +197,7 @@ export class PublicAuthController {
     public async refreshTokens(
         @AuthUser() user: IAuthPayload,
         @Res({ passthrough: true }) response: Response,
-    ): Promise<SuccessRefreshTokenResponseDto> {
+    ): Promise<AuthRefreshResponseDto> {
         const refreshResponse = await this.authService.generateTokens(user);
 
         response.cookie('accessToken', refreshResponse.accessToken, {
@@ -214,8 +214,6 @@ export class PublicAuthController {
             sameSite: 'strict',
         });
 
-        return {
-            message: 'Successfully refresh token',
-        };
+        return refreshResponse;
     }
 }
