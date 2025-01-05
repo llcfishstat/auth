@@ -7,7 +7,11 @@ import { HashService } from 'src/common/services/hash.service';
 import { UserService } from 'src/modules/user/services/user.service';
 
 import { AuthLoginByEmailDto, AuthLoginByPhoneDto } from 'src/modules/auth/dtos/auth.login.dto';
-import { AuthResponseDto, SignUpByEmailResponseDto } from 'src/modules/auth/dtos/auth.response.dto';
+import {
+    AuthRefreshResponseDto,
+    AuthResponseDto,
+    SignUpByEmailResponseDto,
+} from 'src/modules/auth/dtos/auth.response.dto';
 import { AuthSignupByEmailDto, AuthSignupByPhoneDto } from 'src/modules/auth/dtos/auth.signup.dto';
 import {
     IAuthPayload,
@@ -109,7 +113,9 @@ export class AuthService implements IAuthService {
         };
     }
 
-    async loginByEmail(data: AuthLoginByEmailDto): Promise<AuthResponseDto> {
+    async loginByEmail(
+        data: AuthLoginByEmailDto,
+    ): Promise<AuthResponseDto & AuthRefreshResponseDto> {
         const { email, password } = data;
 
         const user = await this.userService.getUserByEmail(email);
@@ -149,7 +155,9 @@ export class AuthService implements IAuthService {
         return response;
     }
 
-    async signupByEmail(data: AuthSignupByEmailDto): Promise<SignUpByEmailResponseDto> {
+    async signupByEmail(
+        data: AuthSignupByEmailDto,
+    ): Promise<SignUpByEmailResponseDto & AuthRefreshResponseDto> {
         const { email, firstName, password } = data;
         const findByEmail = await this.userService.getUserByEmail(email);
 
@@ -219,7 +227,9 @@ export class AuthService implements IAuthService {
         };
     }
 
-    async verifyPhone(verifyPhoneDto: VerifyPhoneDto): Promise<VerifyFlashCallResponseDto> {
+    async verifyPhone(
+        verifyPhoneDto: VerifyPhoneDto,
+    ): Promise<VerifyFlashCallResponseDto & AuthRefreshResponseDto> {
         const { phone, code } = verifyPhoneDto;
         const user = await this.userService.getUserByPhone(phone);
 
