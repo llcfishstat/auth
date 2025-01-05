@@ -17,7 +17,6 @@ import { Public } from 'src/common/decorators/public.decorator';
 import { AuthJwtRefreshGuard } from 'src/common/guards/jwt.refresh.guard';
 import { AuthLoginByEmailDto, AuthLoginByPhoneDto } from 'src/modules/auth/dtos/auth.login.dto';
 import {
-    AuthRefreshResponseDto,
     AuthResponseDto,
     SignUpByEmailResponseDto,
     VerifyEmailResponseDto,
@@ -31,6 +30,8 @@ import {
     SendFlashCallResponseDto,
     VerifyFlashCallResponseDto,
 } from 'src/common/dtos/flash-call-response.dto';
+
+import { SuccessRefreshTokenResponseDto } from 'src/common/dtos/refresh-token-response.dto';
 import {
     ForgotPasswordDto,
     ForgotPasswordResponseDto,
@@ -193,7 +194,28 @@ export class PublicAuthController {
     @UseGuards(AuthJwtRefreshGuard)
     @Get('refresh')
     @HttpCode(HttpStatus.OK)
-    public refreshTokens(@AuthUser() user: IAuthPayload): Promise<AuthRefreshResponseDto> {
-        return this.authService.generateTokens(user);
+    public async refreshTokens(
+        @AuthUser() user: IAuthPayload,
+        @Res({ passthrough: true }) response: Response,
+    ): Promise<SuccessRefreshTokenResponseDto> {
+        const refreshResponse = await this.authService.generateTokens(user);
+
+        response.cookie('accessToken', refreshResponse.accessToken, {
+            httpOnly: true,
+            secure: this.env === 'production',
+            maxAge: 1000 * 60 * 15,
+            sameSite: 'strict',
+        });
+
+        response.cookie('refreshToken', refreshResponse.refreshToken, {
+            httpOnly: true,
+            secure: this.env === 'production',
+            maxAge: 1000 * 60 * 60 * 24 * 7,
+            sameSite: 'strict',
+        });
+
+        return {
+            message: 'Successfully refresh token',
+        };
     }
 }
