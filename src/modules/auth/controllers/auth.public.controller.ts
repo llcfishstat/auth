@@ -1,6 +1,7 @@
 import {
     Body,
     Controller,
+    Delete,
     Get,
     HttpCode,
     HttpStatus,
@@ -188,6 +189,29 @@ export class PublicAuthController {
         @Body() payload: ResetPasswordDto,
     ): Promise<ForgotPasswordVerifyResponseDto> {
         return this.authService.resetPassword(payload);
+    }
+
+    @Public()
+    @Delete('logout')
+    @HttpCode(HttpStatus.OK)
+    public async logout(
+        @Res({ passthrough: true }) response: Response,
+    ): Promise<{ message: string }> {
+        response.cookie('accessToken', '', {
+            httpOnly: true,
+            secure: this.env === 'production',
+            expires: new Date(0),
+            sameSite: 'strict',
+        });
+
+        response.cookie('refreshToken', '', {
+            httpOnly: true,
+            secure: this.env === 'production',
+            expires: new Date(0),
+            sameSite: 'strict',
+        });
+
+        return { message: 'Successfully logged out' };
     }
 
     @Public()
