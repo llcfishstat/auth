@@ -71,14 +71,14 @@ export class PublicAuthController {
             httpOnly: true,
             secure: this.env === 'production',
             maxAge: 1000 * 60 * 60 * 24 * 3,
-            sameSite: this.env === 'production' ? 'none' : 'strict',
+            sameSite: this.env === 'production' ? 'lax' : 'strict',
         });
 
         response.cookie('refreshToken', authResponse.refreshToken, {
             httpOnly: true,
             secure: this.env === 'production',
             maxAge: 1000 * 60 * 60 * 24 * 7,
-            sameSite: this.env === 'production' ? 'none' : 'strict',
+            sameSite: this.env === 'production' ? 'lax' : 'strict',
         });
 
         const { accessToken, refreshToken, ...rest } = authResponse;
@@ -105,14 +105,14 @@ export class PublicAuthController {
             httpOnly: true,
             secure: this.env === 'production',
             maxAge: 1000 * 60 * 60 * 24 * 3,
-            sameSite: this.env === 'production' ? 'none' : 'strict',
+            sameSite: this.env === 'production' ? 'lax' : 'strict',
         });
 
         response.cookie('refreshToken', signUpResponse.refreshToken, {
             httpOnly: true,
             secure: this.env === 'production',
             maxAge: 1000 * 60 * 60 * 24 * 7,
-            sameSite: this.env === 'production' ? 'none' : 'strict',
+            sameSite: this.env === 'production' ? 'lax' : 'strict',
         });
 
         const { accessToken, refreshToken, ...rest } = signUpResponse;
@@ -147,14 +147,14 @@ export class PublicAuthController {
             httpOnly: true,
             secure: this.env === 'production',
             maxAge: 1000 * 60 * 60 * 24 * 3,
-            sameSite: this.env === 'production' ? 'none' : 'strict',
+            sameSite: this.env === 'production' ? 'lax' : 'strict',
         });
 
         response.cookie('refreshToken', verifyResponse.refreshToken, {
             httpOnly: true,
             secure: this.env === 'production',
             maxAge: 1000 * 60 * 60 * 24 * 7,
-            sameSite: this.env === 'production' ? 'none' : 'strict',
+            sameSite: this.env === 'production' ? 'lax' : 'strict',
         });
 
         const { accessToken, refreshToken, ...rest } = verifyResponse;
@@ -201,14 +201,14 @@ export class PublicAuthController {
             httpOnly: true,
             secure: this.env === 'production',
             expires: new Date(0),
-            sameSite: this.env === 'production' ? 'none' : 'strict',
+            sameSite: this.env === 'production' ? 'lax' : 'strict',
         });
 
         response.cookie('refreshToken', '', {
             httpOnly: true,
             secure: this.env === 'production',
             expires: new Date(0),
-            sameSite: this.env === 'production' ? 'none' : 'strict',
+            sameSite: this.env === 'production' ? 'lax' : 'strict',
         });
 
         return { message: 'Successfully logged out' };
@@ -228,14 +228,14 @@ export class PublicAuthController {
             httpOnly: true,
             secure: this.env === 'production',
             maxAge: 1000 * 60 * 60 * 24 * 3,
-            sameSite: this.env === 'production' ? 'none' : 'strict',
+            sameSite: this.env === 'production' ? 'lax' : 'strict',
         });
 
         response.cookie('refreshToken', refreshResponse.refreshToken, {
             httpOnly: true,
             secure: this.env === 'production',
             maxAge: 1000 * 60 * 60 * 24 * 7,
-            sameSite: this.env === 'production' ? 'none' : 'strict',
+            sameSite: this.env === 'production' ? 'lax' : 'strict',
         });
 
         return refreshResponse;
