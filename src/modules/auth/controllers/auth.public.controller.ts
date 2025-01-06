@@ -72,6 +72,7 @@ export class PublicAuthController {
             secure: this.env === 'production',
             maxAge: 1000 * 60 * 60 * 24 * 3,
             sameSite: this.env === 'production' ? 'lax' : 'strict',
+            domain: this.env === 'production' ? '.fishstat.tech' : undefined,
         });
 
         response.cookie('refreshToken', authResponse.refreshToken, {
@@ -79,6 +80,7 @@ export class PublicAuthController {
             secure: this.env === 'production',
             maxAge: 1000 * 60 * 60 * 24 * 7,
             sameSite: this.env === 'production' ? 'lax' : 'strict',
+            domain: this.env === 'production' ? '.fishstat.tech' : undefined,
         });
 
         const { accessToken, refreshToken, ...rest } = authResponse;
@@ -106,6 +108,7 @@ export class PublicAuthController {
             secure: this.env === 'production',
             maxAge: 1000 * 60 * 60 * 24 * 3,
             sameSite: this.env === 'production' ? 'lax' : 'strict',
+            domain: this.env === 'production' ? '.fishstat.tech' : undefined,
         });
 
         response.cookie('refreshToken', signUpResponse.refreshToken, {
@@ -113,6 +116,7 @@ export class PublicAuthController {
             secure: this.env === 'production',
             maxAge: 1000 * 60 * 60 * 24 * 7,
             sameSite: this.env === 'production' ? 'lax' : 'strict',
+            domain: this.env === 'production' ? '.fishstat.tech' : undefined,
         });
 
         const { accessToken, refreshToken, ...rest } = signUpResponse;
@@ -148,6 +152,7 @@ export class PublicAuthController {
             secure: this.env === 'production',
             maxAge: 1000 * 60 * 60 * 24 * 3,
             sameSite: this.env === 'production' ? 'lax' : 'strict',
+            domain: this.env === 'production' ? '.fishstat.tech' : undefined,
         });
 
         response.cookie('refreshToken', verifyResponse.refreshToken, {
@@ -155,6 +160,7 @@ export class PublicAuthController {
             secure: this.env === 'production',
             maxAge: 1000 * 60 * 60 * 24 * 7,
             sameSite: this.env === 'production' ? 'lax' : 'strict',
+            domain: this.env === 'production' ? '.fishstat.tech' : undefined,
         });
 
         const { accessToken, refreshToken, ...rest } = verifyResponse;
@@ -229,6 +235,7 @@ export class PublicAuthController {
             secure: this.env === 'production',
             maxAge: 1000 * 60 * 60 * 24 * 3,
             sameSite: this.env === 'production' ? 'lax' : 'strict',
+            domain: this.env === 'production' ? '.fishstat.tech' : undefined,
         });
 
         response.cookie('refreshToken', refreshResponse.refreshToken, {
@@ -236,6 +243,7 @@ export class PublicAuthController {
             secure: this.env === 'production',
             maxAge: 1000 * 60 * 60 * 24 * 7,
             sameSite: this.env === 'production' ? 'lax' : 'strict',
+            domain: this.env === 'production' ? '.fishstat.tech' : undefined,
         });
 
         return refreshResponse;
