@@ -71,7 +71,7 @@ export class PublicAuthController {
             httpOnly: true,
             secure: this.env === 'production',
             maxAge: 1000 * 60 * 60 * 24 * 3,
-            sameSite: this.env === 'production' ? 'lax' : 'strict',
+            sameSite: 'none',
             domain: this.env === 'production' ? '.fishstat.tech' : undefined,
         });
 
@@ -79,7 +79,7 @@ export class PublicAuthController {
             httpOnly: true,
             secure: this.env === 'production',
             maxAge: 1000 * 60 * 60 * 24 * 7,
-            sameSite: this.env === 'production' ? 'lax' : 'strict',
+            sameSite: 'none',
             domain: this.env === 'production' ? '.fishstat.tech' : undefined,
         });
 
@@ -107,7 +107,7 @@ export class PublicAuthController {
             httpOnly: true,
             secure: this.env === 'production',
             maxAge: 1000 * 60 * 60 * 24 * 3,
-            sameSite: this.env === 'production' ? 'lax' : 'strict',
+            sameSite: 'none',
             domain: this.env === 'production' ? '.fishstat.tech' : undefined,
         });
 
@@ -115,7 +115,7 @@ export class PublicAuthController {
             httpOnly: true,
             secure: this.env === 'production',
             maxAge: 1000 * 60 * 60 * 24 * 7,
-            sameSite: this.env === 'production' ? 'lax' : 'strict',
+            sameSite: 'none',
             domain: this.env === 'production' ? '.fishstat.tech' : undefined,
         });
 
@@ -151,7 +151,7 @@ export class PublicAuthController {
             httpOnly: true,
             secure: this.env === 'production',
             maxAge: 1000 * 60 * 60 * 24 * 3,
-            sameSite: this.env === 'production' ? 'lax' : 'strict',
+            sameSite: 'none',
             domain: this.env === 'production' ? '.fishstat.tech' : undefined,
         });
 
@@ -159,7 +159,7 @@ export class PublicAuthController {
             httpOnly: true,
             secure: this.env === 'production',
             maxAge: 1000 * 60 * 60 * 24 * 7,
-            sameSite: this.env === 'production' ? 'lax' : 'strict',
+            sameSite: 'none',
             domain: this.env === 'production' ? '.fishstat.tech' : undefined,
         });
 
@@ -234,7 +234,7 @@ export class PublicAuthController {
             httpOnly: true,
             secure: this.env === 'production',
             maxAge: 1000 * 60 * 60 * 24 * 3,
-            sameSite: this.env === 'production' ? 'lax' : 'strict',
+            sameSite: 'none',
             domain: this.env === 'production' ? '.fishstat.tech' : undefined,
         });
 
@@ -242,7 +242,7 @@ export class PublicAuthController {
             httpOnly: true,
             secure: this.env === 'production',
             maxAge: 1000 * 60 * 60 * 24 * 7,
-            sameSite: this.env === 'production' ? 'lax' : 'strict',
+            sameSite: 'none',
             domain: this.env === 'production' ? '.fishstat.tech' : undefined,
         });
 
