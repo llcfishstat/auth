@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
+import { Body, Controller, Get, Post, Put } from '@nestjs/common';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { Role } from '@prisma/client';
 
@@ -36,5 +36,12 @@ export class AuthCompanyController {
         @Body() data: CompanyUpdateDto,
     ): Promise<CompanyResponseDto> {
         return this.companyService.updateCompany(user.id, data);
+    }
+
+    @ApiBearerAuth('accessToken')
+    @Get('/user')
+    @AllowedRoles([Role.USER, Role.ADMIN])
+    getCompaniesForUser(@AuthUser() user: IAuthPayload): Promise<CompanyResponseDto[]> {
+        return this.companyService.getCompaniesForUser(user.id);
     }
 }
