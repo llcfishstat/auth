@@ -20,11 +20,12 @@ async function bootstrap() {
     app.use(cookieParser());
 
     const corsOrigin = configService.get<string>('app.corsOrigin') || '*';
+    const allowedOrigins = [corsOrigin, 'http://localhost:8888'];
 
     console.log(corsOrigin);
 
     app.enableCors({
-        origin: corsOrigin,
+        origin: allowedOrigins,
         methods: 'GET,POST,PUT,DELETE,OPTIONS',
         allowedHeaders: 'Content-Type,Authorization',
         credentials: true,
