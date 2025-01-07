@@ -62,23 +62,17 @@ export class PublicAuthController {
     @Post('login/email')
     @HttpCode(HttpStatus.OK)
     public async loginByEmail(
-        @Req() req: Request,
         @Body() authLoginByEmailDto: AuthLoginByEmailDto,
         @Res({ passthrough: true }) response: Response,
     ): Promise<AuthResponseDto> {
         const authResponse = await this.authService.loginByEmail(authLoginByEmailDto);
-        const hostname = req.hostname;
-        const isLocalhost = hostname === 'localhost' || hostname === '127.0.0.1';
-
-        const cookieDomain =
-            this.env === 'production' && !isLocalhost ? '.fishstat.tech' : undefined;
 
         response.cookie('accessToken', authResponse.accessToken, {
             httpOnly: true,
             secure: this.env === 'production',
             maxAge: 1000 * 60 * 60 * 24 * 3,
             sameSite: 'none',
-            domain: cookieDomain,
+            //domain: this.env === 'production' ? '.fishstat.tech' : undefined,
         });
 
         response.cookie('refreshToken', authResponse.refreshToken, {
@@ -86,7 +80,7 @@ export class PublicAuthController {
             secure: this.env === 'production',
             maxAge: 1000 * 60 * 60 * 24 * 7,
             sameSite: 'none',
-            domain: cookieDomain,
+            //domain: this.env === 'production' ? '.fishstat.tech' : undefined,
         });
 
         const { accessToken, refreshToken, ...rest } = authResponse;
@@ -104,23 +98,17 @@ export class PublicAuthController {
     @Post('signup/email')
     @HttpCode(HttpStatus.CREATED)
     public async signupByEmail(
-        @Req() req: Request,
         @Body() authSignupByEmailDto: AuthSignupByEmailDto,
         @Res({ passthrough: true }) response: Response,
     ): Promise<SignUpByEmailResponseDto> {
         const signUpResponse = await this.authService.signupByEmail(authSignupByEmailDto);
-        const hostname = req.hostname;
-        const isLocalhost = hostname === 'localhost' || hostname === '127.0.0.1';
-
-        const cookieDomain =
-            this.env === 'production' && !isLocalhost ? '.fishstat.tech' : undefined;
 
         response.cookie('accessToken', signUpResponse.accessToken, {
             httpOnly: true,
             secure: this.env === 'production',
             maxAge: 1000 * 60 * 60 * 24 * 3,
             sameSite: 'none',
-            domain: cookieDomain,
+            //domain: this.env === 'production' ? '.fishstat.tech' : undefined,
         });
 
         response.cookie('refreshToken', signUpResponse.refreshToken, {
@@ -128,7 +116,7 @@ export class PublicAuthController {
             secure: this.env === 'production',
             maxAge: 1000 * 60 * 60 * 24 * 7,
             sameSite: 'none',
-            domain: cookieDomain,
+            //domain: this.env === 'production' ? '.fishstat.tech' : undefined,
         });
 
         const { accessToken, refreshToken, ...rest } = signUpResponse;
@@ -154,23 +142,17 @@ export class PublicAuthController {
     @Post('verify-phone')
     @HttpCode(HttpStatus.OK)
     public async verifyPhone(
-        @Req() req: Request,
         @Body() verifyPhoneDto: VerifyPhoneDto,
         @Res({ passthrough: true }) response: Response,
     ): Promise<VerifyFlashCallResponseDto> {
         const verifyResponse = await this.authService.verifyPhone(verifyPhoneDto);
-        const hostname = req.hostname;
-        const isLocalhost = hostname === 'localhost' || hostname === '127.0.0.1';
-
-        const cookieDomain =
-            this.env === 'production' && !isLocalhost ? '.fishstat.tech' : undefined;
 
         response.cookie('accessToken', verifyResponse.accessToken, {
             httpOnly: true,
             secure: this.env === 'production',
             maxAge: 1000 * 60 * 60 * 24 * 3,
             sameSite: 'none',
-            domain: cookieDomain,
+            //domain: this.env === 'production' ? '.fishstat.tech' : undefined,
         });
 
         response.cookie('refreshToken', verifyResponse.refreshToken, {
@@ -178,7 +160,7 @@ export class PublicAuthController {
             secure: this.env === 'production',
             maxAge: 1000 * 60 * 60 * 24 * 7,
             sameSite: 'none',
-            domain: cookieDomain,
+            //domain: this.env === 'production' ? '.fishstat.tech' : undefined,
         });
 
         const { accessToken, refreshToken, ...rest } = verifyResponse;
@@ -243,23 +225,17 @@ export class PublicAuthController {
     @Get('refresh')
     @HttpCode(HttpStatus.OK)
     public async refreshTokens(
-        @Req() req: Request,
         @AuthUser() user: IAuthPayload,
         @Res({ passthrough: true }) response: Response,
     ): Promise<AuthRefreshResponseDto> {
         const refreshResponse = await this.authService.generateTokens(user);
-        const hostname = req.hostname;
-        const isLocalhost = hostname === 'localhost' || hostname === '127.0.0.1';
-
-        const cookieDomain =
-            this.env === 'production' && !isLocalhost ? '.fishstat.tech' : undefined;
 
         response.cookie('accessToken', refreshResponse.accessToken, {
             httpOnly: true,
             secure: this.env === 'production',
             maxAge: 1000 * 60 * 60 * 24 * 3,
             sameSite: 'none',
-            domain: cookieDomain,
+            //domain: this.env === 'production' ? '.fishstat.tech' : undefined,
         });
 
         response.cookie('refreshToken', refreshResponse.refreshToken, {
@@ -267,7 +243,7 @@ export class PublicAuthController {
             secure: this.env === 'production',
             maxAge: 1000 * 60 * 60 * 24 * 7,
             sameSite: 'none',
-            domain: cookieDomain,
+            //domain: this.env === 'production' ? '.fishstat.tech' : undefined,
         });
 
         return refreshResponse;
