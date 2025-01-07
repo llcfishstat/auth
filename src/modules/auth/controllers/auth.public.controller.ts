@@ -207,14 +207,16 @@ export class PublicAuthController {
             httpOnly: true,
             secure: this.env === 'production',
             expires: new Date(0),
-            sameSite: this.env === 'production' ? 'lax' : 'none',
+            sameSite: this.env === 'production' ? 'none' : 'lax',
+            domain: this.env === 'production' ? '.fishstat.tech' : undefined,
         });
 
         response.cookie('refreshToken', '', {
             httpOnly: true,
             secure: this.env === 'production',
             expires: new Date(0),
-            sameSite: this.env === 'production' ? 'lax' : 'none',
+            sameSite: this.env === 'production' ? 'none' : 'lax',
+            domain: this.env === 'production' ? '.fishstat.tech' : undefined,
         });
 
         return { message: 'Successfully logged out' };
