@@ -113,8 +113,8 @@ model UserCompany {
 }
 
 enum CompanyVerificationStatus {
-  UNVERIFIED
-  VERIFIED
+  UNVERIFIED @map("UNVERIFIED")
+  VERIFIED   @map("VERIFIED")
 }
 
 enum Role {
