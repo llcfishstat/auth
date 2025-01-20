@@ -254,10 +254,6 @@ export class PublicAuthController {
         return refreshResponse;
     }
 
-    // ----------------------------
-    // Protected endpoints below
-    // ----------------------------
-
     @Post('change/phone')
     @ApiBearerAuth('accessToken')
     public changePhone(
