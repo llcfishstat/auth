@@ -34,11 +34,18 @@ export class AppController {
 
     @MessagePattern('getUserById')
     public async getUserById(@TransformMessagePayload() payload: Record<string, string>) {
+        console.log('authService: "getUserById" called with', payload);
         return this.userService.getUserById(payload.userId);
     }
 
     @MessagePattern('getUserByEmail')
     public async getUserByEmail(@TransformMessagePayload() payload: Record<string, string>) {
         return this.userService.getUserByEmail(payload.userName);
+    }
+
+    @MessagePattern('ping')
+    public ping(data: any) {
+        console.log('authService got ping with data:', data);
+        return 'pong';
     }
 }

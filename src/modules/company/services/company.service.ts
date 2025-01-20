@@ -59,13 +59,29 @@ export class CompanyService {
             select: { companyId: true },
         });
 
-        if (!user?.companyId && user.companyId !== data.companyId) {
+        if (!user?.companyId && user.companyId !== data.id) {
             throw new ForbiddenException('company.notOwned');
         }
 
         const updatedCompany = await this.prisma.company.update({
-            where: { id: data.companyId },
-            data,
+            where: { id: data.id },
+            data: {
+                directorFirstName: data.directorFirstName,
+                directorLastName: data.directorLastName,
+                directorPatronymic: data.directorPatronymic,
+                organizationName: data.organizationName,
+                legalAddress: data.legalAddress,
+                email: data.email,
+                phone: data.phone,
+                description: data.description,
+                logoUrl: data.logoUrl,
+                inn: data.inn,
+                ogrn: data.ogrn,
+                country: data.country,
+                city: data.city,
+                documentUrl: data.documentUrl,
+                status: data.status,
+            },
         });
 
         return this.toCompanyResponseDto(updatedCompany);

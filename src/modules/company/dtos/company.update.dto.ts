@@ -1,5 +1,6 @@
-import { IsOptional, IsString, IsEmail, IsNotEmpty } from 'class-validator';
+import { IsOptional, IsString, IsEmail, IsNotEmpty, IsEnum } from 'class-validator';
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
+import { CompanyVerificationStatus } from '@prisma/client';
 
 export class CompanyUpdateDto {
     @ApiProperty({
@@ -8,7 +9,7 @@ export class CompanyUpdateDto {
     })
     @IsNotEmpty()
     @IsString()
-    companyId: string;
+    id: string;
 
     @ApiPropertyOptional({
         description: 'Director first name',
@@ -81,4 +82,53 @@ export class CompanyUpdateDto {
     @IsOptional()
     @IsString()
     logoUrl?: string;
+
+    @ApiPropertyOptional({
+        description: 'INN (Tax Identification Number)',
+        example: '123456789012',
+    })
+    @IsOptional()
+    @IsString()
+    inn?: string;
+
+    @ApiPropertyOptional({
+        description: 'OGRN (Primary State Registration Number)',
+        example: '1234567890123',
+    })
+    @IsOptional()
+    @IsString()
+    ogrn?: string;
+
+    @ApiPropertyOptional({
+        description: 'Country where the company is registered',
+        example: 'Russia',
+    })
+    @IsOptional()
+    @IsString()
+    country?: string;
+
+    @ApiPropertyOptional({
+        description: 'City where the company is located',
+        example: 'Vladivostok',
+    })
+    @IsOptional()
+    @IsString()
+    city?: string;
+
+    @ApiPropertyOptional({
+        description: 'URL of the document associated with the company',
+        example: 'https://my-bucket.s3.amazonaws.com/company-documents/document.pdf',
+    })
+    @IsOptional()
+    @IsString()
+    documentUrl?: string;
+
+    @ApiPropertyOptional({
+        description: 'Verification status of the company',
+        example: 'UNVERIFIED',
+        enum: CompanyVerificationStatus,
+    })
+    @IsOptional()
+    @IsEnum(CompanyVerificationStatus)
+    status?: CompanyVerificationStatus;
 }

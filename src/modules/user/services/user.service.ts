@@ -14,6 +14,7 @@ export class UserService {
     constructor(private readonly prismaService: PrismaService) {}
 
     async getUserById(userId: string): Promise<UserResponseDto> {
+        console.log(userId);
         return this.prismaService.user.findUnique({ where: { id: userId } });
     }
 
