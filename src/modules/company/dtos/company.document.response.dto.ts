@@ -4,6 +4,9 @@ export class CompanyDocumentResponseDto {
     @ApiProperty({ example: 'd41d8cd9-8f00-b204-e980-0998ecf8427e' })
     id: string;
 
+    @ApiProperty({ example: 'd41d8cd9-8f00-b204-e980-0998ecf8427e' })
+    companyId: string;
+
     @ApiProperty({ example: 'file-uuid-123' })
     fileId: string;
 
