@@ -20,7 +20,7 @@ export class CompanyCreateDto {
     @IsString()
     directorLastName: string;
 
-    @ApiPropertyOptional({
+    @ApiProperty({
         description: 'Director patronymic (middle name)',
         example: 'Михайлович',
     })
@@ -36,14 +36,14 @@ export class CompanyCreateDto {
     @IsString()
     organizationName: string;
 
-    @ApiPropertyOptional({
+    @ApiProperty({
         description: 'INN',
         example: '2537140750',
     })
     @IsString()
     inn: string;
 
-    @ApiPropertyOptional({
+    @ApiProperty({
         description: 'Primary State Registration Number',
         example: '1192536019059',
     })
@@ -66,7 +66,7 @@ export class CompanyCreateDto {
     @IsString()
     city?: string;
 
-    @ApiPropertyOptional({
+    @ApiProperty({
         description: 'Legal address',
         example: '690021, Приморский край, город Владивосток, Черемуховая ул, д. 7, офис 410',
     })
@@ -74,7 +74,7 @@ export class CompanyCreateDto {
     @IsNotEmpty()
     legalAddress: string;
 
-    @ApiPropertyOptional({
+    @ApiProperty({
         description: 'Company email',
         example: 'support@fishstat.ru',
     })
@@ -82,7 +82,7 @@ export class CompanyCreateDto {
     @IsEmail()
     email: string;
 
-    @ApiPropertyOptional({
+    @ApiProperty({
         description: 'Company phone number',
         example: '79999999999',
     })
@@ -90,7 +90,7 @@ export class CompanyCreateDto {
     @IsString()
     phone: string;
 
-    @ApiPropertyOptional({
+    @ApiProperty({
         description: 'Short description of the company',
         example: 'Площадка для торговли рыбой',
     })
@@ -98,14 +98,14 @@ export class CompanyCreateDto {
     @IsString()
     description?: string;
 
-    @ApiPropertyOptional({
+    @ApiProperty({
         description: 'Link to the registration document (e.g. business license)',
     })
     @IsNotEmpty()
     @IsString()
     documentUrl: string;
 
-    @ApiPropertyOptional({
+    @ApiProperty({
         description: 'URL of the company logo',
         example: 'https://my-bucket.s3.amazonaws.com/company-logos/acme.jpg',
     })
