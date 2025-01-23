@@ -186,7 +186,6 @@ export class AuthService implements IAuthService {
         const { phone, code } = payload;
 
         await this.callService.verifyFlashCall({ phone, code });
-        console.log(phone, code, user);
 
         const updatedUser = await this.userService.updateUser(user.id, {
             phoneNumber: phone,
